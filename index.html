@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Symptom Checker</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    #symptom {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    #submitBtn {
+        width: 100%;
+        padding: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #doctorList {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Symptom Checker</h1>
+    <input type="text" id="symptom" placeholder="Enter symptoms...">
+    <button id="submitBtn">Submit</button>
+    <div id="doctorList"></div>
+</div>
+<script>
+    document.getElementById('submitBtn').addEventListener('click', function() {
+        let symptom = document.getElementById('symptom').value;
+        if(symptom.trim() === '') {
+            alert('Please enter a symptom.');
+            return;
+        }
+        // Here you can implement code to submit the symptom and fetch nearby doctors
+        // For demonstration, let's assume we have an array of nearby doctors
+        let nearbyDoctors = [
+            { name: 'Dr. John Doe', specialty: 'Cardiologist', location: '123 Main St' },
+            { name: 'Dr. Jane Smith', specialty: 'Dermatologist', location: '456 Elm St' },
+            { name: 'Dr. Michael Johnson', specialty: 'Pediatrician', location: '789 Oak St' }
+        ];
+        displayDoctors(nearbyDoctors);
+    });
+
+    function displayDoctors(doctors) {
+        let doctorList = document.getElementById('doctorList');
+        doctorList.innerHTML = '';
+        doctors.forEach(function(doctor) {
+            let doctorItem = document.createElement('div');
+            doctorItem.classList.add('doctor');
+            doctorItem.innerHTML = '<strong>Name:</strong> ' + doctor.name + '<br>' +
+                                   '<strong>Specialty:</strong> ' + doctor.specialty + '<br>' +
+                                   '<strong>Location:</strong> ' + doctor.location;
+            doctorList.appendChild(doctorItem);
+        });
+    }
+</script>
+</body>
+</html>
